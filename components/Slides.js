@@ -11,6 +11,8 @@ class Slides extends Component {
         <Button
           title="Get Started Now"
           raised
+          buttonStyle={styles.buttonStyle}
+          onPress={this.props.onComplete}
         />
       );
     }
@@ -53,7 +55,14 @@ const styles = {
   },
   textStyle: {
     fontSize: 30,
-    color: 'white'
+    color: 'white',
+    textAlign: 'center',
+    marginLeft: 15,
+    marginRight: 15
+  },
+  buttonStyle: {
+    backgroundColor: '#0288D1',
+    marginTop: 15
   }
 };
 

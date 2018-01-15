@@ -11,12 +11,18 @@ class MapScreen extends Component {
       latitudeDelta: 0.09
     }
   }
-   render() {
+
+  onRegionChangeComplete = (region) => {
+    this.setState({ region });
+  }
+
+  render() {
     return (
       <View style={{ flex: 1 }}>
         <MapView
           region={this.state.region}
           style={{ flex: 1 }}
+          onRegionChangeComplete={this.onRegionChangeComplete}
         />
       </View>
     );

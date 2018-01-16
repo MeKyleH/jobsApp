@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { Button, Card } from 'react-native-elements';
+import { Dimensions, Text, View } from 'react-native';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 import Swipe from '../components/Swipe';
+
+const JOB_CARD_HEIGHT = Dimensions.get('window').height / 2;
 
 class DeckScreen extends Component {
   renderCard(job) {
@@ -15,16 +17,14 @@ class DeckScreen extends Component {
     };
 
     return (
-      <Card title={job.jobtitle}>
+      <Card title={job.jobtitle} containerStyle={styles.containerStyle}>
         <View style={{ height: 300 }}>
           <MapView
             scrollEnabled={false}
             style={{ flex: 1 }}
             cacheEnabled={true}
             initialRegion={initialRegion}
-          >
-
-          </MapView>
+          />
         </View>
         <View style={styles.detailWrapper}>
           <Text>{job.company}</Text>
@@ -39,14 +39,13 @@ class DeckScreen extends Component {
 
   renderNoMoreCards() {
     return (
-      <Card title="No more jobs">
-      </Card>
+      <Card title="No more jobs" />
     );
   }
 
   render() {
     return (
-      <View>
+      <View style={{ marginTop: 50 }}>
         <Swipe
           data={this.props.jobs}
           renderNoMoreCards={this.renderNoMoreCards}
@@ -62,7 +61,11 @@ const styles = {
   detailWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 10
+    marginBottom: 10,
+    marginTop: 10
+  },
+  containerStyle: {
+    height: 525
   }
 };
 

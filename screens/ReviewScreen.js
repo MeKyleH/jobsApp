@@ -11,6 +11,7 @@ class ReviewScreen extends Component {
        tabBarIcon: ({ tintColor }) => {
          return <Icon name="favorite" size={30} color={tintColor} />;
        },
+       headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 },
        headerRight: (
          <Button
            title="Settings"

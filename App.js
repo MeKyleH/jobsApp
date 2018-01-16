@@ -27,6 +27,8 @@ export default class App extends React.Component {
             })
           }
         }, {
+          tabBarPosition: 'bottom',
+          swipeEnabled: false, // stops Android swiping between tabs
           tabBarOptions: {
             labelStyle: { fontSize: 12 }
           }
@@ -34,6 +36,7 @@ export default class App extends React.Component {
       }
     }, {
       navigationOptions: {
+        backBehavior: 'none',
         tabBarVisible: false
       },
       lazy: true

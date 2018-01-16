@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 class ReviewScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -23,14 +24,14 @@ class ReviewScreen extends Component {
   render() {
     return (
       <View>
-        <Text>ReviewScreen</Text>
-        <Text>ReviewScreen</Text>
-        <Text>ReviewScreen</Text>
-        <Text>ReviewScreen</Text>
-        <Text>ReviewScreen</Text>
+
       </View>
     );
   }
 }
 
-export default ReviewScreen;
+const mapStateToProps = (state) => {
+  return { likedJobs: state.likedJobs };
+};
+
+export default (mapStateToProps)(ReviewScreen);

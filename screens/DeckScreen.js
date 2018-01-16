@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
+import * as actions from '../actions';
 import Swipe from '../components/Swipe';
-
-const JOB_CARD_HEIGHT = Dimensions.get('window').height / 2;
 
 class DeckScreen extends Component {
   renderCard(job) {
@@ -45,11 +44,12 @@ class DeckScreen extends Component {
 
   render() {
     return (
-      <View style={{ marginTop: 50 }}>
+      <View style={{ marginTop: 30 }}>
         <Swipe
           data={this.props.jobs}
           renderNoMoreCards={this.renderNoMoreCards}
           renderCard={this.renderCard}
+          onSwipeRight={job => this.props.like_job(job)}
           keyProp="jobkey"
         />
       </View>
@@ -73,4 +73,4 @@ const mapStateToProps = ({ jobs }) => {
   return { jobs: jobs.results };
 };
 
-export default connect(mapStateToProps)(DeckScreen);
+export default connect(mapStateToProps, actions)(DeckScreen);

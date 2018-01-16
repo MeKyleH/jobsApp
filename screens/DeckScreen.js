@@ -49,7 +49,7 @@ class DeckScreen extends Component {
           data={this.props.jobs}
           renderNoMoreCards={this.renderNoMoreCards}
           renderCard={this.renderCard}
-          onSwipeRight={job => this.props.like_job(job)}
+          onSwipeRight={job => this.props.likeJob(job)}
           keyProp="jobkey"
         />
       </View>
@@ -69,8 +69,8 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ jobs }) => {
+function mapStateToProps({ jobs }) {
   return { jobs: jobs.results };
-};
+}
 
 export default connect(mapStateToProps, actions)(DeckScreen);

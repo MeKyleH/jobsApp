@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Text, View } from 'react-native';
+import { Card, Linking, Platform, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -21,17 +21,50 @@ class ReviewScreen extends Component {
     };
   };
 
+  renderLikedJobs() {
+console.log('rendering liked jobs', this.props.likedJobs);
+    return this.props.likedJobs.map(job => {
+      const { company, formattedRelativeTime, url } = job;
+      return (
+        <Card>
+          <View style={{ height: 200 }}>
+            <View style={styles.detailWrapper}>
+              <Text style={styles.italics}>{company}</Text>
+              <Text style={styles.italics}>{formattedRelativeTime}</Text>
+            </View>
+            <Button
+              title="Apply Now"
+              backgroundColor="#03A9F4"
+              onPress={() => Linking.openURL(url)}
+            />
+          </View>
+        </Card>
+      );
+    });
+  }
+
   render() {
     return (
-      <View>
-
-      </View>
+      <ScrollView>
+        {this.renderLikedJobs()}
+      </ScrollView>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { likedJobs: state.likedJobs };
+const styles = {
+  italics: {
+    fontStyle: 'italic'
+  },
+  detailWrapper: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  }
 };
 
-export default (mapStateToProps)(ReviewScreen);
+function mapStateToProps(state) {
+  return { likedJobs: state.likedJobs };
+}
+
+export default connect(mapStateToProps)(ReviewScreen);

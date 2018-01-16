@@ -18,7 +18,8 @@ const SWIPE_OUT_DURATION = 250; //ms
   this.props.renderNoMoreCards() what to do after done swiping
   this.props.renderCard(item) how to render card/item
   this.props.keyProp string label for unique key
-
+  this.props.onSwipeRight callback executed after swiping right
+  this.props.onSwipeLeft callback executed after swiping left
 **/
 class Swipe extends Component {
   static defaultProps = {
@@ -86,7 +87,6 @@ class Swipe extends Component {
   completeSwipe(direction) {
     const { onSwipeLeft, onSwipeRight, data } = this.props;
     const item = data[this.state.index];
-
     direction === 0 ? onSwipeRight(item) : onSwipeLeft(item);
     this.position.setValue({ x: 0, y: 0 });
     this.setState({ index: this.state.index + 1 });

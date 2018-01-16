@@ -127,7 +127,8 @@ class Swipe extends Component {
         </Animated.View>
       );
     });
-    return Platform.OS === 'android' ? deck : deck.reverse();
+    return deck.reverse();
+    // return Platform.OS === 'android' ? deck : deck.reverse();
   }
 
   render() {

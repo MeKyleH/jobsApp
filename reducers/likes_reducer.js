@@ -6,7 +6,7 @@ import {
 export default function (state = [], action) {
   switch (action.type) {
     case LIKE_JOB:
-    return _.uniqby([
+    return _.uniqBy([
       action.payload, ...state
     ], 'jobkey');
     default:

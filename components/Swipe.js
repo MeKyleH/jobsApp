@@ -87,7 +87,7 @@ class Swipe extends Component {
   completeSwipe(direction) {
     const { onSwipeLeft, onSwipeRight, data } = this.props;
     const item = data[this.state.index];
-    direction === 0 ? onSwipeRight(item) : onSwipeLeft(item);
+    direction === 1 ? onSwipeRight(item) : onSwipeLeft(item);
     this.position.setValue({ x: 0, y: 0 });
     this.setState({ index: this.state.index + 1 });
   }
